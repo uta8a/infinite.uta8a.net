@@ -1,0 +1,16 @@
+home:
+  welcome: ♾️
+
+
+metas:
+  title: 無限に記事を読みたい気持ち
+  url: '/'
+  image: /img/top-ogp-1-big.webp
+  twitter: '@uta8a'
+  site: infinite.uta8a.net
+  description: |
+    技術記事を読んで、週に一度まとめます。昔の記事も含めます。
+  lang: ja
+
+mergedKeys:
+  metas: object

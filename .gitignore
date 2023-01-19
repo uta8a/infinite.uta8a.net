@@ -1,3 +1,4 @@
 .DS_Store
 _bin/
 _site/
+_cache/

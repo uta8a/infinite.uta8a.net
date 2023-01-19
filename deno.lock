@@ -435,11 +435,17 @@
     "https://deno.land/x/nunjucks@3.2.3-2/src/tests.js": "0f68a51c0be20e82eb033c913bb10bca1fc7eb4fcc603943515aac4608e88999",
     "https://deno.land/x/nunjucks@3.2.3-2/src/transformer.js": "401e3b1588ea2933883cc43cc329077f5b1a3a5da391f9dfc0a2a63a1a89660c",
     "https://deno.land/x/nunjucks@3.2.3-2/src/waterfall.js": "4d8878b3ebcf0a1b4bf9e7575e2f30bc6467cb8ee3717b80754c945cde661b9e",
-    "https://raw.githubusercontent.com/lumeland/experimental-plugins/main/reading_time/mod.ts": "45035c1c7e7ce6a10b4715a32eee65133eca8b8be7e01a2799f7e8586265a873"
+    "https://raw.githubusercontent.com/lumeland/experimental-plugins/main/reading_time/mod.ts": "45035c1c7e7ce6a10b4715a32eee65133eca8b8be7e01a2799f7e8586265a873",
+    "https://raw.githubusercontent.com/uta8a/theme-simple-blog-for-me/for-infinite-uta8a-net/mod.ts": "9c95102791c7896d9a03ad120fdf208419814a6fb0eb995a1de4d7b50096d3f0",
+    "https://raw.githubusercontent.com/uta8a/theme-simple-blog-for-me/for-infinite-uta8a-net/plugins.ts": "764ac4840c1d2a1df29049ad0a0820175ed816a39bde3f984f77a7df8a68ab97",
+    "https://raw.githubusercontent.com/uta8a/theme-simple-blog-for-me/for-infinite-uta8a-net/src/archive.tmpl.js": "c13cecc04adb10462832886d0c610452031a9b1c45d9caf6094ba62311ef4efb",
+    "https://raw.githubusercontent.com/uta8a/theme-simple-blog-for-me/for-infinite-uta8a-net/src/archive_result.tmpl.js": "36aa9beccffe9dac7ed7090f67009c6f7686fd281053ad34f4ae29899fb280bc",
+    "https://raw.githubusercontent.com/uta8a/theme-simple-blog-for-me/for-infinite-uta8a-net/src/feed.tmpl.js": "0940fefdeacf120bd73a497b9826cd11baaf88c747dcb213a7911e55abac1204"
   },
   "npm": {
     "specifiers": {
       "autoprefixer@10.4.13": "autoprefixer@10.4.13_postcss@8.4.21",
+      "date-fns": "date-fns@2.29.3",
       "date-fns@2.29.3": "date-fns@2.29.3",
       "markdown-it-attrs@4.1.6": "markdown-it-attrs@4.1.6_markdown-it@13.0.1",
       "markdown-it-deflist@2.1.0": "markdown-it-deflist@2.1.0",
