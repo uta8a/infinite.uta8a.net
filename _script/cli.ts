@@ -97,22 +97,22 @@ const parseBody = async (body: string, entry: string) => {
 }
 
 // main
-for await (const entry of expandGlob('./_content/*.md')) {
-  // initialize img, posts directory
-  const existsPosts = await isExists('./posts');
-  const existsImg = await isExists('./img');
-  if (existsPosts) {
-    await Deno.remove('./posts', { recursive: true });
-  }
-  if (existsImg) {
-    await Deno.remove('./img', { recursive: true });
-  }
-  await Deno.mkdir('./posts', { recursive: true });
-  await Deno.mkdir('./img', { recursive: true });
-  await Deno.copyFile('_img/_data.yml', 'img/_data.yml');
-  await Deno.copyFile('_img/top-ogp-1.png', 'img/top-ogp-1.png');
-  await Deno.copyFile('_img/none.png', 'img/none.png');
+// initialize img, posts directory
+const existsPosts = await isExists('./posts');
+const existsImg = await isExists('./img');
+if (existsPosts) {
+  await Deno.remove('./posts', { recursive: true });
+}
+if (existsImg) {
+  await Deno.remove('./img', { recursive: true });
+}
+await Deno.mkdir('./posts', { recursive: true });
+await Deno.mkdir('./img', { recursive: true });
+await Deno.copyFile('_img/_data.yml', 'img/_data.yml');
+await Deno.copyFile('_img/top-ogp-1.png', 'img/top-ogp-1.png');
+await Deno.copyFile('_img/none.png', 'img/none.png');
 
+for await (const entry of expandGlob('./_content/*.md')) {
   // read & write md -> md
   const raw = await Deno.readTextFile(entry.path);
   const { frontMatter, body, attrs: _ } = extract<Data>(raw);
