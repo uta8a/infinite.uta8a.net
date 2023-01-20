@@ -27,6 +27,7 @@ type Metas = {
 interface Data {
   title: string;
   date: string;
+  description: string;
 }
 async function isExists(filepath: string): Promise<boolean> {
   try {
