@@ -2,3 +2,7 @@
 _bin/
 _site/
 _cache/
+
+# generated from `_content/` to `posts/`
+posts/
+img/
