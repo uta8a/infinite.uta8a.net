@@ -58,7 +58,7 @@ const getMetas = (html: string): Metas => {
     message: undefined,
   }
 }
-const dlImage = async (url: string | undefined, entry: string) => {
+const dlImage = async (url: string | undefined) => {
   if (url === undefined) return undefined;
   const name: string = cryptoRandomString({ length: 32, type: 'alphanumeric' });
   try {
@@ -67,15 +67,15 @@ const dlImage = async (url: string | undefined, entry: string) => {
     if (ext.length >= 5) {
       ext = 'png';
     }
-    Deno.rename(img.fullPath, `./img/ogp-${entry}-${name}.${ext}`);
-    return `/img/ogp-${entry}-${name}.webp`; // webp link is embed
+    Deno.rename(img.fullPath, `./img/ogp-${name}.${ext}`);
+    return `/img/ogp-${name}.webp`; // webp link is embed
   } catch (err) {
     console.log(err);
   }
   return undefined;
 }
 
-const parseBody = async (body: string, entry: string) => {
+const parseBody = async (body: string) => {
   const raw = body.split(embedYamlRegex);
   const content = [];
   for (const line of raw) {
@@ -86,7 +86,7 @@ const parseBody = async (body: string, entry: string) => {
       const rawHtml = await fetch(dataUrl);
       const html = await rawHtml.text();
       const metas = getMetas(html);
-      const imageUrl = await dlImage(metas.image, entry);
+      const imageUrl = await dlImage(metas.image);
       content.push(`\n<custom-ogp url="${dataUrl}" ${imageUrl ? `image="${imageUrl}"` : ''} ${metas.title ? `title="${metas.title.replace("\n", "")}"` : ''} ${metas.description ? `description="${metas.description.replaceAll("\n", "")}"` : ''}></custom-ogp>\n`);
     } else {
       content.push(line);
@@ -97,26 +97,27 @@ const parseBody = async (body: string, entry: string) => {
 }
 
 // main
-for await (const entry of expandGlob('./_content/*.md')) {
-  // initialize img, posts directory
-  const existsPosts = await isExists('./posts');
-  const existsImg = await isExists('./img');
-  if (existsPosts) {
-    await Deno.remove('./posts', { recursive: true });
-  }
-  if (existsImg) {
-    await Deno.remove('./img', { recursive: true });
-  }
-  await Deno.mkdir('./posts', { recursive: true });
-  await Deno.mkdir('./img', { recursive: true });
-  await Deno.copyFile('_img/_data.yml', 'img/_data.yml');
-  await Deno.copyFile('_img/top-ogp-1.png', 'img/top-ogp-1.png');
-  await Deno.copyFile('_img/none.png', 'img/none.png');
+// initialize img, posts directory
+const existsPosts = await isExists('./posts');
+const existsImg = await isExists('./img');
+if (existsPosts) {
+  await Deno.remove('./posts', { recursive: true });
+}
+if (existsImg) {
+  await Deno.remove('./img', { recursive: true });
+}
+await Deno.mkdir('./posts', { recursive: true });
+await Deno.mkdir('./img', { recursive: true });
+await Deno.copyFile('_img/_data.yml', 'img/_data.yml');
+await Deno.copyFile('_img/top-ogp-1.png', 'img/top-ogp-1.png');
+await Deno.copyFile('_img/none.png', 'img/none.png');
+await Deno.copyFile('_img/2023-01-27-1.png', 'img/2023-01-27-1.png');
 
+for await (const entry of expandGlob('./_content/*.md')) {
   // read & write md -> md
   const raw = await Deno.readTextFile(entry.path);
   const { frontMatter, body, attrs: _ } = extract<Data>(raw);
-  const bodyContent = await parseBody(body, entry.name.split('.')[0]); // 2023-01-20.md => 2023-01-20
+  const bodyContent = await parseBody(body); // 2023-01-20.md => 2023-01-20
   const content = '---\n' + frontMatter + '\n---\n\n' + bodyContent;
   await Deno.writeTextFile(`./posts/${entry.name}`, content);
 }
