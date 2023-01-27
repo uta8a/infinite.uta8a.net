@@ -61,7 +61,7 @@ class Ogp extends HTMLElement {
 
     // image
     let imgUrl;
-    if (this.hasAttributes('image')) {
+    if (this.hasAttributes('image') && this.getAttribute('image') !== null) {
       imgUrl = this.getAttribute('image');
     } else {
       imgUrl = '/img/none.webp';
