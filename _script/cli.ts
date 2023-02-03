@@ -87,7 +87,7 @@ const parseBody = async (body: string) => {
       const html = await rawHtml.text();
       const metas = getMetas(html);
       const imageUrl = await dlImage(metas.image);
-      content.push(`\n<custom-ogp url="${dataUrl}" ${imageUrl ? `image="${imageUrl}"` : ''} ${metas.title ? `title="${metas.title.replace("\n", "")}"` : ''} ${metas.description ? `description="${metas.description.replaceAll("\n", "")}"` : ''}></custom-ogp>\n`);
+      content.push(`\n<custom-ogp url="${dataUrl}" ${imageUrl ? `image="${imageUrl}"` : ''} ${metas.title ? `title="${metas.title.replace("\n", "")}"` : ''} ></custom-ogp>\n`);
     } else {
       content.push(line);
     }
