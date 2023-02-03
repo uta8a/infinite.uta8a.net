@@ -63,23 +63,24 @@ class Ogp extends HTMLElement {
     let imgUrl;
     if (this.hasAttributes('image') && this.getAttribute('image') !== null) {
       imgUrl = this.getAttribute('image');
-    } else {
-      imgUrl = '/img/none.webp';
     }
     img.src = imgUrl;
 
     // h3
     title.textContent = this.getAttribute('title');
+    console.log("title = ", this.getAttribute('title'));
 
     // span
-    desc.textContent = this.getAttribute('description');
+    // desc.textContent = this.getAttribute('description');
 
     url.textContent = this.getAttribute('url').split('/')[2].split('?')[0]
 
     // append elements
     shadow.appendChild(style);
     shadow.appendChild(wrapper);
-    wrapper.appendChild(img);
+    if (this.hasAttributes('image') && this.getAttribute('image') !== null) {
+      wrapper.appendChild(img);
+    }
     wrapper.appendChild(title);
     // wrapper.appendChild(desc); // TODO: 自動生成されるdescriptionの質が悪いので、いい感じにする方法を考える。現時点では自分の要約の方が良いと判断してappendを避ける
     wrapper.appendChild(url);
